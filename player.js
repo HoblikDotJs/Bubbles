@@ -7,34 +7,34 @@ class Player {
     this.vel = createVector();
     this.score = 0;
     this.fitness = 0;
-    if(brain){
+    if (brain) {
       this.brain = brain.copy();
-    }else{
+    } else {
       this.brain = new NeuralNetwork(R, 5, 2);
     }
   }
 
-  mutate(r){
+  mutate(r) {
     this.brain.mutate(r);
   }
 
-  dispose(){
+  dispose() {
     this.brain.dispose();
   }
 
   move() {
     let outputs = this.brain.predict(this.inputs);
-    this.vel.x = map(outputs[0], 0, 1, -2,2);
-    this.vel.y = map(outputs[1], 0, 1, -2,2);
-    if(this.counter > width*25){
+    this.vel.x = map(outputs[0], 0, 1, -2, 2);
+    this.vel.y = map(outputs[1], 0, 1, -2, 2);
+    if (this.counter > width * 25) {
       this.coll = true;
     }
   }
 
   show() {
     strokeWeight(2);
-    fill(255,50);
-    stroke(255,100)
+    fill('#FFFFFF');
+    stroke('#E6E6E6')
     ellipse(this.pos.x, this.pos.y, this.r, this.r);
   }
 
@@ -48,22 +48,22 @@ class Player {
     let pt;
     this.inputs = [];
     this.s = [107];
-    for (let k = 0; k < R; k++){
+    for (let k = 0; k < R; k++) {
       for (let i = 1; i < obsticles.length; i++) {
-        pt = collideLineLine(this.pos.x, this.pos.y, this.pos.x + 100, this.pos.y - 40 + (k * 20), obsticles[i][0], obsticles[i][1], obsticles[i-1][0], obsticles[i-1][1], true);
+        pt = collideLineLine(this.pos.x, this.pos.y, this.pos.x + 100, this.pos.y - 40 + (k * 20), obsticles[i][0], obsticles[i][1], obsticles[i - 1][0], obsticles[i - 1][1], true);
         di = dist(pt.x, pt.y, this.pos.x, this.pos.y);
-        if(pt.x && pt.y != 0 && SEE){
-        line(pt.x,pt.y,this.pos.x,this.pos.y);
-      }
+        if (pt.x && pt.y != 0 && SEE) {
+          line(pt.x, pt.y, this.pos.x, this.pos.y);
+        }
         this.s[i] = constrain(di, 0, 200);
-        this.inputs[k] = map(floor(min(this.s)),0,200,1,0);
+        this.inputs[k] = map(floor(min(this.s)), 0, 200, 1, 0);
       }
     }
   }
 
   collide() {
     for (let i = 1; i < obsticles.length; i++) {
-      if ((this.vel.x < 0.1 && this.vel.y < 0.1) || this.coll || collideLineCircle(obsticles[i][0], obsticles[i][1], obsticles[i-1][0], obsticles[i-1][1], this.pos.x, this.pos.y, this.r)) {
+      if ((this.vel.x < 0.1 && this.vel.y < 0.1) || this.coll || collideLineCircle(obsticles[i][0], obsticles[i][1], obsticles[i - 1][0], obsticles[i - 1][1], this.pos.x, this.pos.y, this.r)) {
         this.score = this.pos.x;
         return true;
       }

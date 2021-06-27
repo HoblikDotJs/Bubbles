@@ -30,10 +30,10 @@ class Mapa {
   }
 
   show() {
-    stroke(0);
+    stroke('#404040');
     strokeWeight(3);
     beginShape();
-    fill(42, 41, 34);
+    fill('#808080');
     for (let i = 1; i < obsticles.length; i++) {
       vertex(obsticles[i - 1][0], obsticles[i - 1][1]);
       vertex(obsticles[i][0], obsticles[i][1]);

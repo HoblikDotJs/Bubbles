@@ -7,7 +7,7 @@ let diff;
 
 //-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+//
 
-const POPULATION = 20; // 20
+const POPULATION = 50; // 20
 const STEPS = 5; // 5
 const TRACK = 16;
 const R = 15;
@@ -23,7 +23,7 @@ const DIFFICULTY = 3;
 
 function setup() {
   diff = constrain(DIFFICULTY, 1, 3);
-  console.log(" Population size : " + POPULATION + '\n', "Number of steps in one frame is : " + STEPS + '\n', "Game is running on CPU : " + CPU + '\n', "Debug lines : " + SEE + '\n', "Track is rotated 90 deg : " + ROTATED + '\n', "Difficulty is : " + diff + '\n');
+  console.log(" Population size: " + POPULATION + '\n', "Number of steps in one frame is: " + STEPS + '\n', "Game is running on CPU: " + CPU + '\n', "Debug lines: " + SEE + '\n', "Track is rotated 90 deg: " + ROTATED + '\n', "Difficulty is: " + diff + '\n');
   createCanvas(windowHeight, windowHeight);
   if (CPU) {
     tf.setBackend('cpu');
@@ -37,14 +37,14 @@ function setup() {
 
 //-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+//
 function draw() {
-  background(20, 100, 0);
+  background('#E0E0E0');
   if (ROTATED) {
     translate(width / 2, height / 2);
     rotate(-PI / 2);
     translate(-width / 2, -height / 2);
   }
   mapa.show();
-  fill(0);
+  fill(255);
   for (let i = players.length - 1; i >= 0; i--) {
     players[i].show();
   }
