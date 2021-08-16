@@ -37,7 +37,7 @@ function setup() {
 
 //-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+//
 function draw() {
-  background('#E0E0E0');
+  background(0);
   if (ROTATED) {
     translate(width / 2, height / 2);
     rotate(-PI / 2);

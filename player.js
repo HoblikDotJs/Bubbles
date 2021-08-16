@@ -1,5 +1,6 @@
 class Player {
   constructor(brain) {
+    this.color = color(random(255), random(255), random(255))
     this.r = 16;
     this.counter = 0;
     this.coll = false;
@@ -33,8 +34,8 @@ class Player {
 
   show() {
     strokeWeight(2);
-    fill('#FFFFFF');
-    stroke('#E6E6E6')
+    fill(this.color);
+    stroke(this.color)
     ellipse(this.pos.x, this.pos.y, this.r, this.r);
   }
 
